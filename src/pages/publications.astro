@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { publications } from '../data/publications';
+
+const sortedPublications = [...publications].sort(
+  (a, b) => b.year - a.year || b.number - a.number,
+);
+const years = [...new Set(sortedPublications.map((pub) => pub.year))];
+---
+
+<Layout title="Publications | Hratchian Research Group">
+  <main id="main-content">
+    <h1>Publications</h1>
+
+
+    <p>Publications from the Hratchian Research Group and collaborators.</p>
+
+    {years.map((year) => (
+      <section aria-labelledby={`year-${year}`}>
+        <h2 id={`year-${year}`}>{year}</h2>
+        {sortedPublications
+          .filter((pub) => pub.year === year)
+          .map((pub) => (
+            <article class="publication" id={`publication-${pub.number}`}>
+              <span class="number">{pub.number}.</span>
+              <div class="citation">
+                <Fragment set:html={pub.citation} />
+                {pub.doi && (
+                  <>
+                    {' '}[<a
+                      href={`https://doi.org/${pub.doi}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >DOI: {pub.doi}</a>]
+                  </>
+                )}
+                {pub.notes && (
+                  <div class="notes"><Fragment set:html={pub.notes} /></div>
+                )}
+              </div>
+            </article>
+          ))}
+      </section>
+    ))}
+  </main>
+</Layout>
+
+<style>
+  section {
+    margin-top: 2rem;
+  }
+
+  .publication {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .number {
+    font-weight: bold;
+  }
+
+  .citation {
+    overflow-wrap: anywhere;
+  }
+
+  .notes {
+    margin-top: 0.25rem;
+  }
+</style>

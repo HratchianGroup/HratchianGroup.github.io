@@ -1,0 +1,78 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = 'Hratchian Research Group' } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/">Hratchian Research Group<span>University of California, Merced</span></a>
+        <nav aria-label="Main navigation">
+          <a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a>
+          <a href="/people/" aria-current={path === '/people' ? 'page' : undefined}>People</a>
+          <a href="/publications/" aria-current={path === '/publications' ? 'page' : undefined}>Publications</a>
+          <a href="/resources/" aria-current={path === '/resources' ? 'page' : undefined}>Resources</a>
+        </nav>
+      </div>
+    </header>
+    <div class="page-container"><slot /></div>
+    <footer class="site-footer">
+      <p>Hratchian Research Group</p>
+      <p><a href="https://chemistry.ucmerced.edu/">Department of Chemistry &amp; Biochemistry</a><br /><a href="https://www.ucmerced.edu/">University of California, Merced</a></p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    color-scheme: light;
+    --ink: #172d40;
+    --muted: #52616d;
+    --link: #185877;
+    --line: #d8dfe3;
+    --paper: #fcfbf8;
+    --accent: #bd9244;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: var(--link); text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+  h1, h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: normal; line-height: 1.2; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin: 0 0 1.5rem; }
+  h2 { font-size: 1.8rem; }
+  p { margin: 0 0 1.25rem; }
+  .site-header { border-top: 5px solid var(--accent); border-bottom: 1px solid var(--line); background: white; }
+  .header-inner { max-width: 1120px; margin: auto; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .brand { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; text-decoration: none; color: var(--ink); }
+  .brand span { display: block; font-family: Arial, Helvetica, sans-serif; color: var(--muted); font-size: 0.8rem; }
+  nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  nav a { text-decoration: none; padding: 0.4rem 0; }
+  nav a[aria-current='page'] { color: var(--ink); border-bottom: 2px solid var(--accent); }
+  .page-container { max-width: 1120px; margin: auto; padding: 3.5rem 2rem 4rem; }
+  .site-footer { max-width: 1056px; margin: auto; padding: 2rem 0; border-top: 1px solid var(--line); color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; font-size: 0.85rem; }
+  .skip-link { position: absolute; left: 1rem; top: -6rem; background: white; padding: 0.5rem 1rem; z-index: 10; }
+  .skip-link:focus { top: 0.5rem; }
+  @media (max-width: 640px) {
+    .header-inner { padding: 1.25rem; }
+    .page-container { padding: 2.5rem 1.25rem; }
+    .site-footer { margin: 0 1.25rem; flex-direction: column; gap: 0; }
+  }
+</style>

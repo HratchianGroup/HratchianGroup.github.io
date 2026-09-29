@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { people, alumni } from '../data/people';
+
+const categories = [
+  { id: 'pi', title: 'Principal Investigator' },
+  { id: 'postdoc', title: 'Postdoctoral Researchers' },
+  { id: 'graduate', title: 'Graduate Students' },
+  { id: 'undergraduate', title: 'Undergraduate Students' },
+];
+const sections = categories
+  .map((category) => ({ ...category, members: people.filter((person) => person.category === category.id) }))
+  .filter((section) => section.members.length > 0);
+---
+
+<Layout title="People | Hratchian Research Group">
+  <main id="main-content">
+    <h1>People</h1>
+    {sections.map((section) => (
+      <section class="people-section" aria-labelledby={section.id}>
+        <h2 id={section.id}>{section.title}</h2>
+        {section.members.map((person) => (
+          <article class:list={["person", { "without-photo": !person.photo }]} aria-labelledby={person.id}>
+            {person.photo && <img src={person.photo} alt={`Portrait of ${person.name}`} loading={person.category === 'pi' ? 'eager' : 'lazy'} />}
+            <div class="person-details">
+              <h3 id={person.id}>{person.name}</h3>
+              {(person.email || person.office || person.phone) && (
+                <ul class="contact" aria-label={`Contact details for ${person.name}`}>
+                  {person.email && <li><a href={`mailto:${person.email}`}>{person.email}</a></li>}
+                  {person.office && <li>{person.office}</li>}
+                  {person.phone && <li>{person.phone}</li>}
+                </ul>
+              )}
+              <div class="bio" set:html={person.bio} />
+              {(person.cv || person.website) && (
+                <ul class="profile-links" aria-label={`Links for ${person.name}`}>
+                  {person.cv && <li><a href={person.cv}>{person.cvLabel || 'Curriculum vitae'} (PDF)</a></li>}
+                  {person.website && <li><a href={person.website}>Website</a></li>}
+                </ul>
+              )}
+            </div>
+          </article>
+        ))}
+      </section>
+    ))}
+    {alumni.length > 0 && (
+      <section class="people-section" aria-labelledby="alumni">
+        <h2 id="alumni">Group Alumni</h2>
+        <ul class="alumni-list">{alumni.map((alum) => <li>{alum}</li>)}</ul>
+      </section>
+    )}
+  </main>
+</Layout>
+
+<style>
+  .people-section { margin-top: 3rem; }
+  h2 { border-top: 3px solid var(--accent); padding-top: 1.5rem; margin-bottom: 2rem; }
+  .person { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 2.5rem; padding: 0 0 2.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--line); align-items: start; }
+  .person.without-photo { grid-template-columns: minmax(0, 1fr); }
+  .person img { display: block; width: 100%; height: auto; border-radius: 3px; }
+  h3 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; font-weight: normal; line-height: 1.3; margin: 0 0 1rem; }
+  .bio { overflow-wrap: anywhere; }
+  .contact, .profile-links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; font-size: 0.9rem; }
+  .contact { color: var(--muted); margin: 0 0 1.25rem; overflow-wrap: anywhere; }
+  .profile-links { margin: 1.25rem 0 0; }
+  .alumni-list { padding-left: 1.25rem; }
+  .alumni-list li { margin-bottom: 0.7rem; }
+  @media (max-width: 640px) {
+    .person { grid-template-columns: 1fr; gap: 1.5rem; }
+    .person img { max-width: 220px; }
+  }
+</style>
