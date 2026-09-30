@@ -22,6 +22,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         <a class="brand" href="/">Hratchian Research Group<span>University of California, Merced</span></a>
         <nav aria-label="Main navigation">
           <a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a>
+          <a href="/news/" aria-current={path === '/news' || path.startsWith('/news/') ? 'page' : undefined}>News</a>
           <a href="/people/" aria-current={path === '/people' ? 'page' : undefined}>People</a>
           <a href="/publications/" aria-current={path === '/publications' ? 'page' : undefined}>Publications</a>
           <a href="/resources/" aria-current={path === '/resources' ? 'page' : undefined}>Resources</a>
