@@ -50,7 +50,7 @@ export const people: Person[] = [
     "id": "li-ji",
     "name": "Li Ji",
     "category": "graduate",
-    "bio": "Li Ji is a graduate student in the Hratchian Group."
+    "bio": "Li Ji is a graduate student in the Hratchian Group. She obtained her B.S. in Chemistry from Northeast Normal University in Changchun, China. Her current research interests focus on exploring photodetachment processes using ΔSCF methods. In addition, she is engaged in method development grounded in the theory of molecular integrals."
   },
   {
     "id": "joseph-kelleher",
