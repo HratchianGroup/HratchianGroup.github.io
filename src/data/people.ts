@@ -62,7 +62,7 @@ export const people: Person[] = [
     "id": "amanda-padam",
     "name": "Amanda Padam",
     "category": "graduate",
-    "bio": "Amanda Padam is a graduate student in the Hratchian Group."
+    "bio": "Amanda Padam is the newest graduate student to join the Hratchian Group."
   }
 ];
 
