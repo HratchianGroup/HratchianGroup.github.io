@@ -37,7 +37,7 @@ export const people: Person[] = [
     "name": "Abigail O. Gyamfi",
     "category": "graduate",
     "photo": "/images/people/abigail-gyamfi.jpg",
-    "bio": "Abigail O. Gyamfi is a Ph.D. student at the University of California, Merced. She obtained her B.Sc. (Hons) in Chemistry and M.Sc. Occupational and Environmental Health and Safety degrees from the <a href=\"https://www.knust.edu.gh//\">Kwame Nkrumah University of Science and Technology</a>, Kumasi, Ghana. Currently, her research interest lies in computational investigation of three-center, two-electron chemical bond in halogen bonding interactions."
+    "bio": "Abigail O. Gyamfi is a Ph.D. student at the University of California, Merced. She obtained her B.Sc. (Hons) in Chemistry and M.Sc. Occupational and Environmental Health and Safety degrees from the <a href=\"https://www.knust.edu.gh//\">Kwame Nkrumah University of Science and Technology</a>, Kumasi, Ghana. Her current research explores electron detachment processes using theoretical approaches such as delta self-consistent field (ΔSCF) and high-level ab initio methods. ."
   },
   {
     "id": "brianna-aguilar-solis",
