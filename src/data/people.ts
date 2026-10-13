@@ -44,7 +44,7 @@ export const people: Person[] = [
     "name": "Brianna Aguilar-Solis",
     "category": "graduate",
     "photo": "/images/people/brianna-aguilar-solis.jpg",
-    "bio": "Brianna is a Ph.D. student at the University of California, Merced, jointly studying in the Hratchian and Pribram-Jones Groups. She obtained her A.S.T. in Chemistry at Bakersfield College and her B.S. in Chemistry at the University of California, Berkeley. While at Berkeley she conducted research with Dr. Eric Neuscamman and at LBNL with Dr. Sinéad Griffin. Her current research interests lie in investigating excitation methods, including the application of single-determinant methods to model complex excited states possessing unpaired electrons."
+    "bio": "Brianna is a Ph.D. student at the University of California, Merced, jointly studying in the Hratchian and <a href=\"https://www.hypugaea.com\">Pribram-Jones</a> Groups. She obtained her A.S.T. in Chemistry at <a href=\"https://www.bakersfieldcollege.edu/index.html\">Bakersfield College</a>  and her B.S. in Chemistry at the <a href=\"https://www.berkeley.edu\">University of California, Berkeley</a>. While at Berkeley she conducted research with Dr. Eric Neuscamman and at LBNL with Dr. Sinéad Griffin. Her current research interests lie in investigating excitation methods, including the application of single-determinant methods to model complex excited states possessing unpaired electrons."
   },
   {
     "id": "li-ji",
