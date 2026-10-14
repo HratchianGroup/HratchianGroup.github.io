@@ -5,9 +5,6 @@ import { getCollection } from 'astro:content';
 const allPosts = (await getCollection('news', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.localeCompare(a.data.date) || a.data.title.localeCompare(b.data.title));
 const selectedTag = Astro.url.searchParams.get('tag')?.trim() ?? '';
-const filteredPosts = selectedTag
-  ? allPosts.filter((post) => post.data.categories.some((category) => category.toLowerCase() === selectedTag.toLowerCase()))
-  : allPosts;
 const categoryCounts = allPosts.reduce<Record<string, number>>((counts, post) => {
   for (const category of post.data.categories) {
     counts[category] = (counts[category] ?? 0) + 1;
@@ -25,12 +22,13 @@ const dateLabel = (date: string) => new Date(`${date}T12:00:00Z`).toLocaleDateSt
         <h2>Categories</h2>
         <ul class="category-list">
           <li>
-            <a href="/news/" class:list={{ active: !selectedTag }}>All news</a>
+            <a href="/news/" data-category="all" class:list={{ active: !selectedTag }}>All news</a>
           </li>
           {categories.map(([category, count]) => (
             <li>
               <a
                 href={`/news/?tag=${encodeURIComponent(category)}`}
+                data-category={category}
                 class:list={{ active: selectedTag.toLowerCase() === category.toLowerCase() }}
               >
                 {category} <span class="count">({count})</span>
@@ -44,8 +42,8 @@ const dateLabel = (date: string) => new Date(`${date}T12:00:00Z`).toLocaleDateSt
         <h1>{selectedTag ? `News: ${selectedTag}` : 'News'}</h1>
         <p class="intro">Research, milestones, and activities from the Hratchian Group.</p>
         <div class="news-list">
-          {filteredPosts.map((post) => (
-            <article>
+          {allPosts.map((post) => (
+            <article data-categories={post.data.categories.join(',')}>
               <p class="metadata"><time datetime={post.data.date}>{dateLabel(post.data.date)}</time></p>
               <h2><a href={`/news/${post.id}/`}>{post.data.title}</a></h2>
               {post.data.summary && <p>{post.data.summary}</p>}
@@ -59,12 +57,36 @@ const dateLabel = (date: string) => new Date(`${date}T12:00:00Z`).toLocaleDateSt
               <a class="read-more" href={`/news/${post.id}/`} aria-label={`Read more: ${post.data.title}`}>Read more →</a>
             </article>
           ))}
-          {filteredPosts.length === 0 && <p>News updates in this category will appear here soon.</p>}
         </div>
       </div>
     </div>
   </main>
 </Layout>
+
+<script>
+  const syncNewsFilter = () => {
+    const selectedTag = new URLSearchParams(window.location.search).get('tag')?.trim() ?? '';
+    document.querySelectorAll('.news-list article').forEach((article) => {
+      const categories = (article.getAttribute('data-categories') ?? '').split(',').filter(Boolean).map((category) => category.toLowerCase());
+      const matches = !selectedTag || categories.includes(selectedTag.toLowerCase());
+      article.hidden = !matches;
+    });
+
+    document.querySelectorAll('.category-list a[data-category]').forEach((link) => {
+      const category = link.getAttribute('data-category') ?? '';
+      const isActive = !selectedTag ? category === 'all' : category.toLowerCase() === selectedTag.toLowerCase();
+      link.classList.toggle('active', isActive);
+    });
+
+    const heading = document.querySelector('.news-content h1');
+    if (heading) {
+      heading.textContent = selectedTag ? `News: ${selectedTag}` : 'News';
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', syncNewsFilter);
+  window.addEventListener('popstate', syncNewsFilter);
+</script>
 <style>
   .intro, .metadata, .categories { color: var(--muted); }
   .news-layout { display: grid; grid-template-columns: minmax(180px, 220px) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
