@@ -1,35 +1,92 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-const posts = (await getCollection('news', ({ data }) => !data.draft))
+
+const allPosts = (await getCollection('news', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.localeCompare(a.data.date) || a.data.title.localeCompare(b.data.title));
+const selectedTag = Astro.url.searchParams.get('tag')?.trim() ?? '';
+const filteredPosts = selectedTag
+  ? allPosts.filter((post) => post.data.categories.some((category) => category.toLowerCase() === selectedTag.toLowerCase()))
+  : allPosts;
+const categoryCounts = allPosts.reduce<Record<string, number>>((counts, post) => {
+  for (const category of post.data.categories) {
+    counts[category] = (counts[category] ?? 0) + 1;
+  }
+  return counts;
+}, {});
+const categories = Object.entries(categoryCounts)
+  .sort(([left], [right]) => left.localeCompare(right));
 const dateLabel = (date: string) => new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 ---
 <Layout title="News | Hratchian Research Group">
   <main id="main-content">
-    <h1>News</h1>
-    <p class="intro">Research, milestones, and activities from the Hratchian Group.</p>
-    <div class="news-list">
-      {posts.map((post) => (
-        <article>
-          <p class="metadata"><time datetime={post.data.date}>{dateLabel(post.data.date)}</time></p>
-          <h2><a href={`/news/${post.id}/`}>{post.data.title}</a></h2>
-          {post.data.summary && <p>{post.data.summary}</p>}
-          {post.data.categories.length > 0 && <p class="categories">{post.data.categories.join(' · ')}</p>}
-          <a class="read-more" href={`/news/${post.id}/`} aria-label={`Read more: ${post.data.title}`}>Read more →</a>
-        </article>
-      ))}
-      {posts.length === 0 && <p>News updates will appear here soon.</p>}
+    <div class="news-layout">
+      <aside class="news-sidebar" aria-label="News categories">
+        <h2>Categories</h2>
+        <ul class="category-list">
+          <li>
+            <a href="/news/" class:list={{ active: !selectedTag }}>All news</a>
+          </li>
+          {categories.map(([category, count]) => (
+            <li>
+              <a
+                href={`/news/?tag=${encodeURIComponent(category)}`}
+                class:list={{ active: selectedTag.toLowerCase() === category.toLowerCase() }}
+              >
+                {category} <span class="count">({count})</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <div class="news-content">
+        <h1>{selectedTag ? `News: ${selectedTag}` : 'News'}</h1>
+        <p class="intro">Research, milestones, and activities from the Hratchian Group.</p>
+        <div class="news-list">
+          {filteredPosts.map((post) => (
+            <article>
+              <p class="metadata"><time datetime={post.data.date}>{dateLabel(post.data.date)}</time></p>
+              <h2><a href={`/news/${post.id}/`}>{post.data.title}</a></h2>
+              {post.data.summary && <p>{post.data.summary}</p>}
+              {post.data.categories.length > 0 && (
+                <p class="categories">
+                  {post.data.categories.map((category) => (
+                    <a href={`/news/?tag=${encodeURIComponent(category)}`}>{category}</a>
+                  ))}
+                </p>
+              )}
+              <a class="read-more" href={`/news/${post.id}/`} aria-label={`Read more: ${post.data.title}`}>Read more →</a>
+            </article>
+          ))}
+          {filteredPosts.length === 0 && <p>News updates in this category will appear here soon.</p>}
+        </div>
+      </div>
     </div>
   </main>
 </Layout>
 <style>
   .intro, .metadata, .categories { color: var(--muted); }
+  .news-layout { display: grid; grid-template-columns: minmax(180px, 220px) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+  .news-sidebar { position: sticky; top: 1.5rem; }
+  .news-sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+  .category-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .category-list a { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+  .category-list a.active { color: var(--ink); font-weight: 600; }
+  .count { color: var(--muted); font-size: 0.8rem; }
+  .news-content { min-width: 0; }
   .news-list { max-width: 800px; margin-top: 2.5rem; }
   article { padding: 1.75rem 0; border-top: 1px solid var(--line); }
   h2 { margin: 0 0 1rem; font-size: 1.65rem; }
   h2 a { text-decoration: none; }
   h2 a:hover { text-decoration: underline; }
-  .metadata, .categories { font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .metadata { font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .categories { display: flex; flex-wrap: wrap; gap: 0.5rem 0.8rem; margin: 0 0 0.75rem; font-size: 0.8rem; }
+  .categories a { text-decoration: none; }
   .read-more { font-size: 0.9rem; }
+  @media (max-width: 760px) {
+    .news-layout { grid-template-columns: 1fr; }
+    .news-sidebar { position: static; }
+    .category-list { flex-direction: row; flex-wrap: wrap; }
+  }
 </style>
