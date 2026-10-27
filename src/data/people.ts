@@ -30,7 +30,7 @@ export const people: Person[] = [
     "office": "ACS 223",
     "phone": "209.228.2478",
     "cv": "/cv/hrant-hratchian.pdf",
-    "cvLabel": "CV (as of 3/15/2025)"
+    "cvLabel": "CV (as of 10/26/2026)"
   },
   {
     "id": "abigail-gyamfi",
