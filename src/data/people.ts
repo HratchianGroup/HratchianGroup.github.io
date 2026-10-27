@@ -62,7 +62,7 @@ export const people: Person[] = [
     "id": "amanda-padam",
     "name": "Amanda Padam",
     "category": "graduate",
-    "bio": "Amanda Padam is the newest graduate student to join the Hratchian Group."
+    "bio": "Amanda Padam is a graduate student in the Hratchian Group at UC Merced. She obtained her B.S in Biochemistry with a minor in Psychology and an M.S in Organic Chemistry from California State University, Sacramento. Amanda is interested in expanding her research into theoretical and computational chemistry, particularly electronic structure theory."
   }
 ];
 
