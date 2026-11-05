@@ -1,5 +1,5 @@
 ---
-title: "Abigail is a recipient of the 2024 Department of Chemistry and Biochemistry Outstanding Teaching Award!"
+title: "Abigail Gyamfi is a recipient of the 2024 Department of Chemistry and Biochemistry Outstanding Teaching Award!"
 date: "2024-05-09"
 categories: ["Awards"]
 summary: "Congratulations to Abigail, a member of the Hratchian Group on being recognized by the Department of Chemistry and Biochemistry, University of California, Merced with the 2024 Outstanding Teaching Award (2023/2024 academic year) for her exceptional and inclusive teaching abilities!"
