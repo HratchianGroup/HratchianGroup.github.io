@@ -1,11 +1,11 @@
 ---
-title: "Abigail has been recognized with 2025 Merck Next Gen Leaders in Chemistry Award!"
+title: "Abigail is a recipient of the 2025 Merck Next Gen Leaders in Chemistry Award!"
 date: "2025-03-07"
 categories: ["Awards"]
 summary: "Congratulations to Abigail on being recognized with the Merck Next Gen Leaders in Chemistry Award!"
 draft: false
 ---
-<img class="imageStyle" alt="Abigail has been recognized with 2025 Merck Next Gen Leaders in Chemistry Award" src="/images/news/agyamfi_Merck.png" loading="lazy" width="756" height="1008" />
+<img class="imageStyle" alt="Abigail is a recipient of the 2025 Merck Next Gen Leaders in Chemistry Award" src="/images/news/agyamfi_Merck.png" loading="lazy" width="756" height="1008" />
 
 Congratulations to Abigail on being recognized with the Merck Next Gen Leaders in Chemistry Award! She was selected among the 16 Winners of the 2025 Merck Next Gen Leaders in Chemistry Award by [Merck](https://lnkd.in/p/gSGuwJud), a research-intensive biopharmaceutical company. Merck recognizes the passion and potential of rising stars in chemical sciences and celebrates the incredible STEM talent that is driving innovation for the future. 
 
