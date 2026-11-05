@@ -5,6 +5,6 @@ categories: ["Awards"]
 summary: "Congratulations to Abigail on being recognized with an Outstanding Teaching Award!"
 draft: false
 ---
-<img class="imageStyle" alt="Abigail is a recipient of the 2024 CBC Outstanding Teaching Award" src="/images/news/agyamfi_CBC_TA_Award.png" loading="lazy" width="756" height="1008" />
+<img class="imageStyle" alt="Abigail is a recipient of the 2024 CBC Outstanding Teaching Award" src="/images/news/agyamfi_CBC_TA_Award.HEIC" loading="lazy" width="756" height="1008" />
 
 Congratulations to Abigail Gyamfi, a member of the Hratchian Group on being recognized by the Department of Chemistry and Biochemistry, University of California, Merced with the 2024 Outstanding Teaching Award (2023/2024 academic year) for her exceptional and inclusive teaching abilities!
