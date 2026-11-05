@@ -1,6 +1,6 @@
 ---
 title: "Abigail Recognized as a 2026 CAS Future Leader TOP 100!"
-date: "2025-03-07"
+date: "2026-03-19"
 categories: ["Awards"]
 summary: "Congratulations to Abigail on being recognized with the Merck Next Gen Leaders in Chemistry Award!"
 draft: false
