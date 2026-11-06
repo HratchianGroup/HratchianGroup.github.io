@@ -12,6 +12,18 @@ export interface Publication {
 
 export const publications: Publication[] = [
   {
+    "number": 78,
+    "year": 2026,
+    "citation": "A. King, A. Rezaei, A. Bovill, R. Semwal, D. Unruh, H. P. Hratchian, A. Gorden, and M. Findlater, “Recyclable homogeneous zinc and cobalt complexes in catalytic hydrosilylation of ketones and amides”, <em>Dalton Trans.</em>, submitted.",
+    "doi": "10.26434/chemrxiv.15005218/v1"
+  },
+  {
+    "number": 77,
+    "year": 2026,
+    "citation": "S. Nain, M. M. F. de Moraes, H. P. Hratchian, C. C. Jarrold, and L. M. Thompson, “Revisiting the CeO anion photoelectron spectrum: Resolving the assignment and photodetachment mechanism of satellite transitions”, <em>J. Chem. Phys.</em>, submitted (arXiv: 2609.16657).",
+    "doi": "10.48550/arXiv.2609.16657"
+  },
+  {
     "number": 76,
     "year": 2026,
     "citation": "L. M. Thompson, H. P. Hratchian, C. C. Jarrold, “Photodetachment spectra of lanthanide oxide clusters: Prevalence and importance of shake-up transitions”, <em>Phys. Chem. Chem. Phys.</em> (accepted).",
