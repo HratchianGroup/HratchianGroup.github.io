@@ -12,6 +12,12 @@ export interface Publication {
 
 export const publications: Publication[] = [
   {
+    "number": 76,
+    "year": 2026,
+    "citation": "L. M. Thompson, H. P. Hratchian, C. C. Jarrold, “Photodetachment spectra of lanthanide oxide clusters: Prevalence and importance of shake-up transitions”, <em>Phys. Chem. Chem. Phys.</em> (accepted).",
+    "doi": "10.1039/D6CP01491G"
+  },
+  {
     "number": 75,
     "year": 2026,
     "citation": "A. Bovill, A. Abou Taka, H. Harb, H. P. Hratchian, “Excitation/relaxation analysis of electronic transitions using difference density natural orbitals”, <em>J. Chem. Theory Comput.</em> <strong>22</strong>, 930–939 (2026).",

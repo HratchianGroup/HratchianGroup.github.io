@@ -1,6 +1,6 @@
 ---
 title: "Abigail Gyamfi is a recipient of the UC Merced Graduate Division Outstanding Teaching Award!"
-date: "2023-11-10-AG"
+date: "2023-11-10"
 categories: ["Awards"]
 summary: "Congratulations to Abigail on being recognized by UCM GradDiv with the Outstanding Teaching Award!"
 draft: false
