@@ -57,7 +57,7 @@ export const people: Person[] = [
     "id": "joseph-kelleher",
     "name": "Joseph Kelleher",
     "category": "graduate",
-    "photo": "/images/people/joek.jpg",
+    "photo": "/images/people/IMG_0136.jpg",
     "bio": "Joseph Kelleher is a graduate student in the Hratchian Group. He obtained his B.S. in Chemistry with an emphasis in Biochemistry from University of California Merced in 2025. As an undergraduate researcher he did work in the Isborn group with regards to Cresyl Violet in Methanol. His current research revolves around benchmarking core-electron and scalar-relativistic treatments in Lanthanide Molecules."
   },
   {
